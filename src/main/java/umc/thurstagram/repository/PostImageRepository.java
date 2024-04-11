@@ -1,4 +1,7 @@
 package umc.thurstagram.repository;
 
-public interface PostImageRepository extends Pja{
+import org.springframework.data.jpa.repository.JpaRepository;
+import umc.thurstagram.domain.PostImage;
+
+public interface PostImageRepository extends JpaRepository<PostImage, Long> {
 }
