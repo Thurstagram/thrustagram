@@ -1,4 +1,4 @@
-package umc.thurstagram.web.dto.peed;
+package umc.thurstagram.web.dto.post;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -22,5 +22,19 @@ public class PostResponseDTO {
         List<PostImage> postImage;
 
     }
+
+    @Getter
+    @Builder
+    public static class PostLikeUserDTO{
+        String memberId;
+        String profile_img;
+    }
+
+    @Getter
+    @Builder
+    public static class PostLikeDTO{
+        List<PostLikeUserDTO> likeUserDTOS;
+    }
+
 
 }
