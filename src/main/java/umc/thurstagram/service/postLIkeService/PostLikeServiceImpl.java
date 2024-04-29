@@ -1,4 +1,4 @@
-package umc.thurstagram.service;
+package umc.thurstagram.service.postLIkeService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

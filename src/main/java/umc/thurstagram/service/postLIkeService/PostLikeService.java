@@ -1,4 +1,4 @@
-package umc.thurstagram.service;
+package umc.thurstagram.service.postLIkeService;
 
 import umc.thurstagram.domain.Member;
 

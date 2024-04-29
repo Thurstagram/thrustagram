@@ -16,10 +16,10 @@ public class PostResponseDTO {
         Long postId;
         String memberId;
         String content;
-        Long postLike;
+        int postLike;
         List<CommentResponseDTO.PostCommentDTO> postCommentDTOS;
         String profile_img;
-        List<PostImage> postImage;
+        String postImageUrl;
 
     }
 

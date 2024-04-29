@@ -9,5 +9,9 @@ public class CommentResponseDTO {
     @Builder
     public static class PostCommentDTO{
 
+        String memberId;
+        String profile_img;
+        String contents;
+
     }
 }

@@ -4,11 +4,14 @@ package umc.thurstagram.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import umc.thurstagram.converter.CommnetConverter;
 import umc.thurstagram.converter.PostConverter;
-import umc.thurstagram.domain.Member;
-import umc.thurstagram.domain.PostLike;
-import umc.thurstagram.service.PostLikeService;
-import umc.thurstagram.service.PostLikeServiceImpl;
+import umc.thurstagram.domain.*;
+import umc.thurstagram.service.CommentService.CommentService;
+import umc.thurstagram.service.postImageService.PostImageService;
+import umc.thurstagram.service.postLIkeService.PostLikeService;
+import umc.thurstagram.service.postService.PostService;
+import umc.thurstagram.web.dto.comment.CommentResponseDTO;
 import umc.thurstagram.web.dto.post.PostResponseDTO;
 
 import java.util.List;
@@ -19,10 +22,26 @@ import java.util.List;
 public class PostController {
 
     private final PostLikeService postLikeService;
+    private final CommentService commentService;
+    private final PostService postService;
+    private final PostImageService postImageService;
 
 
     @GetMapping("/{postId}")
     public ResponseEntity<PostResponseDTO.PostDetailDTO> getDetailPost(@PathVariable(value = "postId") Long postId) {
+
+        List<Comment> PostComments = commentService.getComments(postId);
+        //코멘트 받아서  PostCommentDTO 리스트로 바꿔줌
+        List<CommentResponseDTO.PostCommentDTO> PostCommentsDTO = CommnetConverter.toPostCommentDTO(PostComments);
+        //코멘트 리스트랑 Post 받아서 DTO로 변환해줌
+        Post post = postService.getPost(postId);
+        //포스트에 좋아요한 숫자
+        int postLikes = postLikeService.getMembesrByPostId(postId).size();
+        // 포스트 이미지
+        String postImgUrl = postImageService.getUrlImg(postId);
+        PostResponseDTO.PostDetailDTO postDetailDTO = PostConverter.toPostDetailDTO(PostCommentsDTO, post, postLikes, postImgUrl);
+
+
 
         return
     }
@@ -36,5 +55,7 @@ public class PostController {
     }
 
     @PostMapping("")
-    public ResponseEntity<> postFeed()
+    public ResponseEntity<> postFeed(){
+
+    }
 }
