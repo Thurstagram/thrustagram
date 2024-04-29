@@ -26,7 +26,7 @@ public class PostResponseDTO {
 
     @Getter
     @Builder
-    public static class List<PostLikeDTO>{
+    public static class PostLikeDTO{
         String memberId;
         String profile_img;
     }
