@@ -23,17 +23,12 @@ public class PostResponseDTO {
 
     }
 
-    @Getter
-    @Builder
-    public static class PostLikeUserDTO{
-        String memberId;
-        String profile_img;
-    }
 
     @Getter
     @Builder
-    public static class PostLikeDTO{
-        List<PostLikeUserDTO> likeUserDTOS;
+    public static class List<PostLikeDTO>{
+        String memberId;
+        String profile_img;
     }
 
 
