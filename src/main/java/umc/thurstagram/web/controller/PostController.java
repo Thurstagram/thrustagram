@@ -75,7 +75,7 @@ public class PostController {
         Long memberId = member.getId(); // 나중에 걍 서비스에서 닉네임으로 아이디 만들기
         //멤버 아이디로 모든 포스트 뽑아옴
         List<Post> posts = postService.getPostsByMemberId(memberId);
-        //DTO로 변환했음
+        //DTO로 변환했음 ///
 
 
     }
