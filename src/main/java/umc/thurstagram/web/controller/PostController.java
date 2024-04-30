@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.*;
 import umc.thurstagram.converter.CommnetConverter;
 import umc.thurstagram.converter.PostConverter;
 import umc.thurstagram.domain.*;
-import umc.thurstagram.service.CommentService.CommentService;
+import umc.thurstagram.service.commentService.CommentService;
+import umc.thurstagram.service.memberService.MemberService;
 import umc.thurstagram.service.postImageService.PostImageService;
 import umc.thurstagram.service.postLIkeService.PostLikeService;
 import umc.thurstagram.service.postService.PostService;
 import umc.thurstagram.web.dto.comment.CommentResponseDTO;
+import umc.thurstagram.web.dto.post.PostRequestDTO;
 import umc.thurstagram.web.dto.post.PostResponseDTO;
 
 import java.util.List;
@@ -25,6 +27,8 @@ public class PostController {
     private final CommentService commentService;
     private final PostService postService;
     private final PostImageService postImageService;
+    private final MemberService memberService;
+
 
 
     @GetMapping("/{postId}")
@@ -54,8 +58,25 @@ public class PostController {
         return
     }
 
-    @PostMapping("")
-    public ResponseEntity<> postFeed(){
+    @PostMapping("/{memberId}")
+    public ResponseEntity<> postFeed(@RequestPart(value = "request") PostRequestDTO.PostFeedDTO postFeedDTO,
+                                     @PathVariable(value = "memberId") String memberId){
+
+            Member member = memberService.getMemberByNickname(memberId);
+            postService.CreateFeed(member, postFeedDTO);
+
+    }
+
+    @GetMapping("/{memberNickname}") //id로 적었지만 닉네임을 받아옴
+    public ResponseEntity<> getMemberPost(@PathVariable(value = "memberNickname") String memberNickname){
+
+        //닉네임으로 멤버 추출 및 멤버아이디 가져옴
+        Member member = memberService.getMemberByNickname(memberNickname);
+        Long memberId = member.getId(); // 나중에 걍 서비스에서 닉네임으로 아이디 만들기
+        //멤버 아이디로 모든 포스트 뽑아옴
+        List<Post> posts = postService.getPostsByMemberId(memberId);
+        //DTO로 변환
+
 
     }
 }

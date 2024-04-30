@@ -1,4 +1,4 @@
-package umc.thurstagram.service.CommentService;
+package umc.thurstagram.service.commentService;
 
 import umc.thurstagram.domain.Comment;
 

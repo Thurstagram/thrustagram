@@ -31,5 +31,13 @@ public class PostResponseDTO {
         String profile_img;
     }
 
+    Getter
+    @Builder
+    public static class PostDTO{
+        String profile_img;
+        String contents;
+
+    }
+
 
 }

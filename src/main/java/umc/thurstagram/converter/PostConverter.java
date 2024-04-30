@@ -4,6 +4,7 @@ import umc.thurstagram.domain.Member;
 import umc.thurstagram.domain.Post;
 import umc.thurstagram.domain.PostLike;
 import umc.thurstagram.web.dto.comment.CommentResponseDTO;
+import umc.thurstagram.web.dto.post.PostRequestDTO;
 import umc.thurstagram.web.dto.post.PostResponseDTO;
 
 import java.util.List;
@@ -32,5 +33,14 @@ public class PostConverter {
                 .build();
 
     }
+
+    public static Post toPost(PostRequestDTO.PostFeedDTO postFeedDTO, Member member){
+
+        return Post.builder()
+                .content(postFeedDTO.getContents())
+                .member(member)
+                .build();
+    }
+
 
 }
