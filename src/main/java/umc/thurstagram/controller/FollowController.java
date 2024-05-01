@@ -1,10 +1,12 @@
 package umc.thurstagram.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import umc.thurstagram.apipayload.ApiResponse;
+import umc.thurstagram.converter.FollowConverter;
+import umc.thurstagram.domain.Follow;
+import umc.thurstagram.dto.FollowRequestDto;
+import umc.thurstagram.dto.FollowResponseDto;
 import umc.thurstagram.dto.ViewFollowResponseDto;
 import umc.thurstagram.service.FollowService;
 
@@ -27,4 +29,16 @@ public class FollowController {
         return ApiResponse.onSuccess(viewFollowResponseDtos);
     }
 
+    @PostMapping("/members/follow")
+    public ApiResponse<FollowResponseDto> follow(@RequestBody FollowRequestDto followRequestDto) {
+        Follow f = followService.follow(followRequestDto);
+        FollowResponseDto followResponseDto = FollowConverter.toFollowResponse(f);
+        return ApiResponse.onSuccess(followResponseDto);
+    }
+
+    @DeleteMapping("/members/followCancel")
+    public ApiResponse<?> followCancel(@RequestBody FollowRequestDto followRequestDto) {
+        followService.followCancel(followRequestDto);
+        return ApiResponse.onSuccess("팔로우 취소됨");
+    }
 }
