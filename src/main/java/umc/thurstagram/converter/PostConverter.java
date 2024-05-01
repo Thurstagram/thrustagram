@@ -1,8 +1,9 @@
 package umc.thurstagram.converter;
 
-import umc.thurstagram.domain.Member;
-import umc.thurstagram.domain.Post;
-import umc.thurstagram.domain.PostLike;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import umc.thurstagram.domain.*;
+import umc.thurstagram.service.postImageService.PostImageService;
 import umc.thurstagram.web.dto.comment.CommentResponseDTO;
 import umc.thurstagram.web.dto.post.PostRequestDTO;
 import umc.thurstagram.web.dto.post.PostResponseDTO;
@@ -10,7 +11,12 @@ import umc.thurstagram.web.dto.post.PostResponseDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
 public class PostConverter {
+
+
+
 
     public static List<PostResponseDTO.PostLikeDTO> toLikeMembersByMembers(List<Member> members){
         return members.stream()
@@ -30,6 +36,7 @@ public class PostConverter {
                 .postCommentDTOS(commentDTOS)
                 .profile_img(post.getMember().getProfile_img())
                 .postImageUrl(UrlImage)
+                .created_at(post.getCreated_at())
                 .build();
 
     }
@@ -41,6 +48,21 @@ public class PostConverter {
                 .member(member)
                 .build();
     }
+
+
+    //페이징 한 Post DTO 만들기
+    public static PostResponseDTO.PostDTO toPostDTO(Post post, String hashTag, String postImg){
+
+
+        return PostResponseDTO.PostDTO.builder()
+                .contents(post.getContent())
+                .created_at(post.getCreated_at())
+                .hashTag(hashTag)
+                .post_img(postImg)
+                .build();
+
+    }
+
 
 
 }

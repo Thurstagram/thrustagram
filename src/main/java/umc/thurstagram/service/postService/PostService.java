@@ -12,5 +12,7 @@ public interface PostService {
 
     public void CreateFeed(Member member, PostRequestDTO.PostFeedDTO postFeedDTO);
 
-    public List<Post> getPostsByMemberId(Long memberId);
+    public Post getPostByMemberId(Long memberId);
+
+    List<Post> getPostsByMemberId(Long memberId);
 }

@@ -1,10 +1,15 @@
 package umc.thurstagram.web.dto.post;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import umc.thurstagram.domain.Hashtag;
+import umc.thurstagram.domain.Post;
 import umc.thurstagram.domain.PostImage;
 import umc.thurstagram.web.dto.comment.CommentResponseDTO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PostResponseDTO {
@@ -20,6 +25,8 @@ public class PostResponseDTO {
         List<CommentResponseDTO.PostCommentDTO> postCommentDTOS;
         String profile_img;
         String postImageUrl;
+        LocalDateTime created_at;
+
 
     }
 
@@ -31,11 +38,19 @@ public class PostResponseDTO {
         String profile_img;
     }
 
-    Getter
+
+
+    @Getter
     @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class PostDTO{
-        String profile_img;
+
+        String post_img;
         String contents;
+        LocalDateTime created_at;
+        String hashTag; //일단 포스트 한개당 해시태그가 하나라고 가정
+
 
     }
 

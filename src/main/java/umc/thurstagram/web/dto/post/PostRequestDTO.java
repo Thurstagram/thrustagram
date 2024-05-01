@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 public class PostRequestDTO {
 
     @Getter
@@ -16,6 +18,7 @@ public class PostRequestDTO {
         String contents;
         String post_img_url;
         String postHashTag;
+        LocalDateTime created_at;
 
     }
 }

@@ -2,6 +2,7 @@ package umc.thurstagram.service.postService;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.thurstagram.converter.HashtagConverter;
@@ -19,6 +20,7 @@ import umc.thurstagram.web.controller.PostController;
 import umc.thurstagram.web.dto.post.PostRequestDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,12 +56,18 @@ public class PostServiceImpl implements PostService{
 
 
 
+    }
+
+    @Override
+    @Transactional
+    public Post getPostByMemberId(Long memberId) {
+
+        return postRepository.findPostByMemberId(memberId);
 
 
     }
 
     @Override
-    @Transactional
     public List<Post> getPostsByMemberId(Long memberId) {
         return postRepository.findAllByMemberId(memberId);
     }
