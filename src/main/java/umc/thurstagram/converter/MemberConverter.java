@@ -3,6 +3,7 @@ package umc.thurstagram.converter;
 import umc.thurstagram.domain.Member;
 import umc.thurstagram.dto.UpdateProfileRequestDto;
 import umc.thurstagram.dto.UpdateProfileResponseDto;
+import umc.thurstagram.dto.ViewUserInfoResponseDto;
 
 public class MemberConverter {
     public static Member toMember(UpdateProfileRequestDto updateProfileRequestDto) {
@@ -18,6 +19,14 @@ public class MemberConverter {
         return UpdateProfileResponseDto.builder()
                 .memberId(member.getId())
                 .updatedAt(member.getUpdated_at())
+                .build();
+    }
+
+    public static ViewUserInfoResponseDto toViewUserInfo(Member member) {
+        return ViewUserInfoResponseDto.builder()
+                .profileImg(member.getProfile_img())
+                .name(member.getName())
+                .nickname(member.getNickname())
                 .build();
     }
 }

@@ -1,14 +1,13 @@
 package umc.thurstagram.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.converter.MemberConverter;
 import umc.thurstagram.domain.Member;
 import umc.thurstagram.dto.UpdateProfileRequestDto;
 import umc.thurstagram.dto.UpdateProfileResponseDto;
+import umc.thurstagram.dto.ViewUserInfoResponseDto;
 import umc.thurstagram.service.MemberService;
 
 import java.io.IOException;
@@ -25,5 +24,12 @@ public class MemberController {
         Member member = memberService.updateProfile(updateProfileRequestDto);
         UpdateProfileResponseDto updateProfileResponseDto = MemberConverter.toUpdateProfile(member);
         return ApiResponse.onSuccess(updateProfileResponseDto);
+    }
+
+    @GetMapping("/members/{memberId}")
+    public ApiResponse<ViewUserInfoResponseDto> viewUserInfo(@PathVariable Long memberId) {
+        Member member = memberService.viewUserInfo(memberId);
+        ViewUserInfoResponseDto viewUserInfoResponseDto = MemberConverter.toViewUserInfo(member);
+        return ApiResponse.onSuccess(viewUserInfoResponseDto);
     }
 }

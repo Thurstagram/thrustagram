@@ -22,4 +22,11 @@ public class MemberService {
         member.update(updateProfileRequestDto.getProfileImg(), updateProfileRequestDto.getName(), updateProfileRequestDto.getNickname());
         return member;
     }
+
+    @Transactional
+    public Member viewUserInfo(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
+        return member;
+    }
 }
