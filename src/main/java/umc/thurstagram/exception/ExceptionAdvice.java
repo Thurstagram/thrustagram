@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.apipayload.code.ReasonDto;
 
 @RestControllerAdvice(annotations = {RestController.class})
-public class ExceptionAdvice {
+public class ExceptionAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = GeneralException.class)
     public ResponseEntity<?> onThrowException(GeneralException generalException, HttpServletRequest request) {
         ReasonDto errorReasonHttpStatus = generalException.getErrorStatus();
