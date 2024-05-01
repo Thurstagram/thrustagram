@@ -54,7 +54,7 @@ public class PostController {
 
         List<Member> likeMembers = postLikeService.getMembesrByPostId(postId);
         List<PostResponseDTO.PostLikeDTO> postLikeDTOS = PostConverter.toLikeMembersByMembers(likeMembers);
-
+//
         return
     }
 
