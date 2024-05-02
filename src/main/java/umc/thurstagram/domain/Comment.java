@@ -1,13 +1,12 @@
 package umc.thurstagram.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import umc.thurstagram.dto.request.CommentCreateRequest;
+import umc.thurstagram.web.dto.request.CommentCreateRequest;
 
 import static jakarta.persistence.FetchType.*;
 

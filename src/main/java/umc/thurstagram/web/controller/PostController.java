@@ -10,7 +10,7 @@ import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.converter.CommnetConverter;
 import umc.thurstagram.converter.PostConverter;
 import umc.thurstagram.domain.*;
-import umc.thurstagram.dto.ViewPostsInlineResponseDto;
+import umc.thurstagram.web.dto.ViewPostsInlineResponseDto;
 import umc.thurstagram.service.commentService.CommentService;
 import umc.thurstagram.service.memberService.MemberService;
 import umc.thurstagram.service.pagingService.FeedQueryService;
@@ -18,9 +18,9 @@ import umc.thurstagram.service.postHashtagService.PostHashtagService;
 import umc.thurstagram.service.postImageService.PostImageService;
 import umc.thurstagram.service.postLIkeService.PostLikeService;
 import umc.thurstagram.service.postService.PostService;
-import umc.thurstagram.dto.CommentResponseDTO;
-import umc.thurstagram.dto.PostRequestDTO;
-import umc.thurstagram.dto.PostResponseDTO;
+import umc.thurstagram.web.dto.CommentResponseDTO;
+import umc.thurstagram.web.dto.PostRequestDTO;
+import umc.thurstagram.web.dto.PostResponseDTO;
 
 import java.util.List;
 

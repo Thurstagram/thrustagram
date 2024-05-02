@@ -5,8 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.thurstagram.domain.*;
-import umc.thurstagram.dto.request.LikeCreateRequest;
-import umc.thurstagram.dto.response.LikeCreateResponse;
+import umc.thurstagram.web.dto.request.LikeCreateRequest;
+import umc.thurstagram.web.dto.response.LikeCreateResponse;
 import umc.thurstagram.repository.*;
 
 @Slf4j

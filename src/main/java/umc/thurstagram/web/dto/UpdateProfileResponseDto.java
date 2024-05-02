@@ -1,16 +1,17 @@
-package umc.thurstagram.dto;
+package umc.thurstagram.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ViewUserInfoResponseDto {
-    private String profileImg;
-    private String name;
-    private String nickname;
+public class UpdateProfileResponseDto {
+    private Long memberId;
+    private LocalDateTime updatedAt;
 }

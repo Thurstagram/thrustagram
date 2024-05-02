@@ -1,7 +1,7 @@
 package umc.thurstagram.converter;
 
 import umc.thurstagram.domain.Follow;
-import umc.thurstagram.dto.FollowResponseDto;
+import umc.thurstagram.web.dto.FollowResponseDto;
 
 public class FollowConverter {
 
