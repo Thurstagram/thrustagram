@@ -1,16 +1,16 @@
 package umc.thurstagram.web.controller;
 
 
-import com.jayway.jsonpath.internal.path.ArraySliceOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.converter.CommnetConverter;
 import umc.thurstagram.converter.PostConverter;
 import umc.thurstagram.domain.*;
+import umc.thurstagram.dto.ViewPostsInlineResponseDto;
 import umc.thurstagram.service.commentService.CommentService;
 import umc.thurstagram.service.memberService.MemberService;
 import umc.thurstagram.service.pagingService.FeedQueryService;
@@ -18,9 +18,9 @@ import umc.thurstagram.service.postHashtagService.PostHashtagService;
 import umc.thurstagram.service.postImageService.PostImageService;
 import umc.thurstagram.service.postLIkeService.PostLikeService;
 import umc.thurstagram.service.postService.PostService;
-import umc.thurstagram.web.dto.comment.CommentResponseDTO;
-import umc.thurstagram.web.dto.post.PostRequestDTO;
-import umc.thurstagram.web.dto.post.PostResponseDTO;
+import umc.thurstagram.dto.CommentResponseDTO;
+import umc.thurstagram.dto.PostRequestDTO;
+import umc.thurstagram.dto.PostResponseDTO;
 
 import java.util.List;
 
@@ -81,5 +81,11 @@ public class PostController {
         Page<PostResponseDTO.PostDTO> feedListDTO = feedQueryService.paging(memberId,pageable);
 
 
+    }
+
+    @GetMapping("/members/{memberId}/posts")
+    public ApiResponse<List<ViewPostsInlineResponseDto>> viewPostsInline(@PathVariable Long memberId) {
+        List<ViewPostsInlineResponseDto> viewPostsInlineResponseDtos = postService.viewPostsInline(memberId);
+        return ApiResponse.onSuccess(viewPostsInlineResponseDtos);
     }
 }

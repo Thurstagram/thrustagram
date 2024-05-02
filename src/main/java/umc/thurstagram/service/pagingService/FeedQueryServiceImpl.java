@@ -7,12 +7,11 @@ import org.springframework.stereotype.Service;
 import umc.thurstagram.converter.PostConverter;
 import umc.thurstagram.domain.Member;
 import umc.thurstagram.domain.Post;
-import umc.thurstagram.domain.PostHashtag;
 import umc.thurstagram.repository.MemberRepository;
 import umc.thurstagram.repository.PostHashtagRepository;
 import umc.thurstagram.repository.PostImageRepository;
 import umc.thurstagram.repository.PostRepository;
-import umc.thurstagram.web.dto.post.PostResponseDTO;
+import umc.thurstagram.dto.PostResponseDTO;
 
 
 @Service

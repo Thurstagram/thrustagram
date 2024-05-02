@@ -1,12 +1,9 @@
 package umc.thurstagram.converter;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import umc.thurstagram.domain.*;
-import umc.thurstagram.service.postImageService.PostImageService;
-import umc.thurstagram.web.dto.comment.CommentResponseDTO;
-import umc.thurstagram.web.dto.post.PostRequestDTO;
-import umc.thurstagram.web.dto.post.PostResponseDTO;
+import umc.thurstagram.dto.CommentResponseDTO;
+import umc.thurstagram.dto.PostRequestDTO;
+import umc.thurstagram.dto.PostResponseDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

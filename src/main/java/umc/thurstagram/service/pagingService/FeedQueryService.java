@@ -2,8 +2,7 @@ package umc.thurstagram.service.pagingService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import umc.thurstagram.domain.Post;
-import umc.thurstagram.web.dto.post.PostResponseDTO;
+import umc.thurstagram.dto.PostResponseDTO;
 
 public interface FeedQueryService {
 

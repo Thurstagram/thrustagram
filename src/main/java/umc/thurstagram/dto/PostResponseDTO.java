@@ -1,13 +1,10 @@
-package umc.thurstagram.web.dto.post;
+package umc.thurstagram.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import umc.thurstagram.domain.Hashtag;
-import umc.thurstagram.domain.Post;
-import umc.thurstagram.domain.PostImage;
-import umc.thurstagram.web.dto.comment.CommentResponseDTO;
+import umc.thurstagram.dto.CommentResponseDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;

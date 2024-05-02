@@ -2,25 +2,18 @@ package umc.thurstagram.service.postService;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.thurstagram.converter.HashtagConverter;
 import umc.thurstagram.converter.PostConverter;
 import umc.thurstagram.converter.PostHashtagConverter;
-import umc.thurstagram.domain.Hashtag;
-import umc.thurstagram.domain.Member;
-import umc.thurstagram.domain.Post;
-import umc.thurstagram.domain.PostHashtag;
-import umc.thurstagram.repository.HashTagRepository;
-import umc.thurstagram.repository.MemberRepository;
-import umc.thurstagram.repository.PostHashtagRepository;
-import umc.thurstagram.repository.PostRepository;
-import umc.thurstagram.web.controller.PostController;
-import umc.thurstagram.web.dto.post.PostRequestDTO;
+import umc.thurstagram.domain.*;
+import umc.thurstagram.dto.ViewPostsInlineResponseDto;
+import umc.thurstagram.repository.*;
+import umc.thurstagram.dto.PostRequestDTO;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +23,7 @@ public class PostServiceImpl implements PostService{
     private final HashTagRepository hashTagRepository;
     private final PostHashtagRepository postHashtagRepository;
     private final MemberRepository memberRepository;
+    private final PostImageRepository postImageRepository;
 
     @Override
     @Transactional
@@ -70,6 +64,24 @@ public class PostServiceImpl implements PostService{
     @Override
     public List<Post> getPostsByMemberId(Long memberId) {
         return postRepository.findAllByMemberId(memberId);
+    }
+
+    @Override
+    @Transactional
+    public List<ViewPostsInlineResponseDto> viewPostsInline(Long memberId) {
+        List<Post> posts =  postRepository.findAllByMemberId(memberId);
+        List<ViewPostsInlineResponseDto> viewPostsInlineResponseDtos = new ArrayList<>();
+        for(Post post : posts) {
+            PostImage postImage = postImageRepository.findFirstByPost_Id(post.getId());
+            String firstPic = postImage.getImgUrl();
+
+            ViewPostsInlineResponseDto viewPostsInlineResponseDto = ViewPostsInlineResponseDto.builder()
+                    .postId(post.getId())
+                    .firstPic(firstPic)
+                    .build();
+            viewPostsInlineResponseDtos.add(viewPostsInlineResponseDto);
+        }
+        return viewPostsInlineResponseDtos;
     }
 
 
