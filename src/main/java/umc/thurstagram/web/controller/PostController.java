@@ -78,7 +78,7 @@ public class PostController {
         Member member = memberService.getMemberByNickname(memberNickname);
         Long memberId = member.getId(); // 나중에 걍 서비스에서 닉네임으로 아이디 만들기
 
-        Page<PostResponseDTO.PostDTO> feedListDTO = feedQueryService.paging(memberId,pageable);1
+        Page<PostResponseDTO.PostDTO> feedListDTO = feedQueryService.paging(memberId,pageable);
 
 
     }
