@@ -5,4 +5,6 @@ import umc.thurstagram.domain.PostImage;
 
 public interface PostImageRepository extends JpaRepository<PostImage, Long> {
     PostImage findFirstByPost_Id(Long PostId);
+
+    PostImage getPostImageByPostId(Long postId);
 }

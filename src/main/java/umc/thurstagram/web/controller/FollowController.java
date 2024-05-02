@@ -1,4 +1,4 @@
-package umc.thurstagram.controller;
+package umc.thurstagram.web.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
