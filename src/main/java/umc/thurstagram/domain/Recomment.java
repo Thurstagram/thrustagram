@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import umc.thurstagram.web.dto.request.CommentCreateRequest;
 
 import static jakarta.persistence.FetchType.LAZY;
 
@@ -28,4 +29,12 @@ public class Recomment {
     private Member member;
 
     private String content;
+
+    public static Recomment of(Member member, Comment comment, CommentCreateRequest commentCreateRequest){
+        return Recomment.builder()
+                .member(member)
+                .comment(comment)
+                .content(commentCreateRequest.getContent())
+                .build();
+    }
 }

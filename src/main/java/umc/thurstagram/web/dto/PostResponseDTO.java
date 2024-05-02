@@ -1,10 +1,9 @@
-package umc.thurstagram.dto;
+package umc.thurstagram.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import umc.thurstagram.dto.CommentResponseDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;

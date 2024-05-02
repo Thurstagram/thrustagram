@@ -1,12 +1,12 @@
 package umc.thurstagram.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import umc.thurstagram.web.dto.request.CommentCreateRequest;
 
 import static jakarta.persistence.FetchType.*;
 
@@ -29,4 +29,12 @@ public class Comment {
     private Post post;
 
     private String content;
+
+    public static Comment of(Member member, Post post, CommentCreateRequest commentCreateRequest){
+        return Comment.builder()
+                .member(member)
+                .post(post)
+                .content(commentCreateRequest.getContent())
+                .build();
+    }
 }

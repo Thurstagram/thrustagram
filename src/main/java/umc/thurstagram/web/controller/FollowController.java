@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.converter.FollowConverter;
 import umc.thurstagram.domain.Follow;
-import umc.thurstagram.dto.FollowRequestDto;
-import umc.thurstagram.dto.FollowResponseDto;
-import umc.thurstagram.dto.ViewFollowResponseDto;
+import umc.thurstagram.web.dto.FollowRequestDto;
+import umc.thurstagram.web.dto.FollowResponseDto;
+import umc.thurstagram.web.dto.ViewFollowResponseDto;
 import umc.thurstagram.service.FollowService;
 
 import java.util.List;

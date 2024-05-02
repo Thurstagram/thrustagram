@@ -2,8 +2,8 @@ package umc.thurstagram.service.postService;
 
 import umc.thurstagram.domain.Member;
 import umc.thurstagram.domain.Post;
-import umc.thurstagram.dto.ViewPostsInlineResponseDto;
-import umc.thurstagram.dto.PostRequestDTO;
+import umc.thurstagram.web.dto.ViewPostsInlineResponseDto;
+import umc.thurstagram.web.dto.PostRequestDTO;
 
 import java.util.List;
 

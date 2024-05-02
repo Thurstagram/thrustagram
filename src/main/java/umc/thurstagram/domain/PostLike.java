@@ -26,4 +26,11 @@ public class PostLike {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    public static PostLike of(Member member, Post post){
+        return PostLike.builder()
+                .member(member)
+                .post(post)
+                .build();
+    }
 }

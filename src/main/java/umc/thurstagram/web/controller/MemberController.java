@@ -5,15 +5,11 @@ import org.springframework.web.bind.annotation.*;
 import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.converter.MemberConverter;
 import umc.thurstagram.domain.Member;
-import umc.thurstagram.dto.UpdateProfileRequestDto;
-import umc.thurstagram.dto.UpdateProfileResponseDto;
-import umc.thurstagram.dto.ViewUserInfoResponseDto;
-import umc.thurstagram.dto.ViewUserNumInfoResponseDto;
+import umc.thurstagram.web.dto.UpdateProfileRequestDto;
+import umc.thurstagram.web.dto.UpdateProfileResponseDto;
+import umc.thurstagram.web.dto.ViewUserInfoResponseDto;
+import umc.thurstagram.web.dto.ViewUserNumInfoResponseDto;
 import umc.thurstagram.service.MemberService;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
