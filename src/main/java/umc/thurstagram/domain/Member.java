@@ -10,12 +10,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+public class Member extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +28,11 @@ public class Member {
     private String password;
     private String profile_img;
 
-
+    public void update(String profileImg, String name, String nickname) {
+        this.profile_img = profileImg;
+        this.name = name;
+        this.nickname = nickname;
+    }
 
 
 }
