@@ -38,7 +38,6 @@ public class PostController {
     private final FeedQueryService feedQueryService;
 
 
-
     @GetMapping("/{postId}")
     public void getDetailPost(@PathVariable(value = "postId") Long postId) {
 

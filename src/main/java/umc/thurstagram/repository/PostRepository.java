@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Post findPostByPostId(Long postId);
+    Post findPostById(Long postId);
     Post findPostByMemberId(Long memberId);
 
     Page<Post> findAllByMember(Member member, PageRequest pageRequest);

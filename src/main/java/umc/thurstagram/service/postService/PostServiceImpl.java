@@ -29,7 +29,7 @@ public class PostServiceImpl implements PostService{
     @Transactional
     public Post getPost(Long postId){
 
-        return postRepository.findPostByPostId(postId);
+        return postRepository.findPostById(postId);
     }
 
     @Override
