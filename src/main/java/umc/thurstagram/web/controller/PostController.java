@@ -39,7 +39,7 @@ public class PostController {
 
 
     @GetMapping("/{postId}")
-    public void getDetailPost(@PathVariable(value = "postId") Long postId) {
+    public ApiResponse<PostResponseDTO.PostDetailDTO> getDetailPost(@PathVariable(value = "postId") Long postId) {
 
         List<Comment> PostComments = commentService.getComments(postId);
         //코멘트 받아서  PostCommentDTO 리스트로 바꿔줌
@@ -52,12 +52,16 @@ public class PostController {
         String postImgUrl = postImageService.getUrlImg(postId);
         PostResponseDTO.PostDetailDTO postDetailDTO = PostConverter.toPostDetailDTO(PostCommentsDTO, post, postLikes, postImgUrl);
 
+        return ApiResponse.onSuccess(postDetailDTO);
+
     }
     @GetMapping("/{postId}/likes")
-    public void getLikes(@PathVariable(value = "postId") Long postId){
+    public ApiResponse<List<PostResponseDTO.PostLikeDTO>> getLikes(@PathVariable(value = "postId") Long postId){
 
         List<Member> likeMembers = postLikeService.getMembesrByPostId(postId);
         List<PostResponseDTO.PostLikeDTO> postLikeDTOS = PostConverter.toLikeMembersByMembers(likeMembers);
+
+        return ApiResponse.onSuccess(postLikeDTOS);
 
     }
 
@@ -68,18 +72,19 @@ public class PostController {
             Member member = memberService.getMemberByNickname(memberId);
             postService.CreateFeed(member, postFeedDTO);
 
+
+
     }
 
     @GetMapping("/{memberNickname}")
-    public void getMemberPost(@PageableDefault(page = 1) Pageable pageable, @PathVariable(value = "memberNickname") String memberNickname){
+    public ApiResponse<Page<PostResponseDTO.PostDTO>> getMemberPost(@PageableDefault(page = 1) Pageable pageable, @PathVariable(value = "memberNickname") String memberNickname){
 
         //닉네임으로 멤버 추출 및 멤버아이디 가져옴
         Member member = memberService.getMemberByNickname(memberNickname);
         Long memberId = member.getId(); // 나중에 걍 서비스에서 닉네임으로 아이디 만들기
 
         Page<PostResponseDTO.PostDTO> feedListDTO = feedQueryService.paging(memberId,pageable);
-
-
+        return ApiResponse.onSuccess(feedListDTO);
     }
 
     @GetMapping("/members/{memberId}/posts")
