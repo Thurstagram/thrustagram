@@ -4,6 +4,8 @@ package umc.thurstagram.service.postService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.thurstagram.apipayload.Handler.TempHandler;
+import umc.thurstagram.apipayload.code.status.ErrorStatus;
 import umc.thurstagram.converter.HashtagConverter;
 import umc.thurstagram.converter.PostConverter;
 import umc.thurstagram.converter.PostHashtagConverter;
@@ -36,6 +38,10 @@ public class PostServiceImpl implements PostService{
     @Transactional
     public void CreateFeed(Member member, PostRequestDTO.PostFeedDTO postFeedDTO) {
 
+        if(postFeedDTO.getPost_img_url() == null)
+        {
+            throw new TempHandler(ErrorStatus.IMG_NOT_FOUND);
+        }
         // Save post
         Post post = PostConverter.toPost(postFeedDTO, member);
         postRepository.save(post);

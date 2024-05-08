@@ -5,6 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.converter.CommnetConverter;
@@ -39,52 +42,79 @@ public class PostController {
 
 
     @GetMapping("/{postId}")
-    public ApiResponse<PostResponseDTO.PostDetailDTO> getDetailPost(@PathVariable(value = "postId") Long postId) {
+    public ResponseEntity<ApiResponse<PostResponseDTO.PostDetailDTO>> getDetailPost(@PathVariable(value = "postId") Long postId) {
 
-        List<Comment> PostComments = commentService.getComments(postId);
-        //코멘트 받아서  PostCommentDTO 리스트로 바꿔줌
-        List<CommentResponseDTO.PostCommentDTO> PostCommentsDTO = CommnetConverter.toPostCommentDTO(PostComments);
-        //코멘트 리스트랑 Post 받아서 DTO로 변환해줌
-        Post post = postService.getPost(postId);
-        //포스트에 좋아요한 숫자
-        int postLikes = postLikeService.getMembesrByPostId(postId).size();
-        // 포스트 이미지
-        String postImgUrl = postImageService.getUrlImg(postId);
-        PostResponseDTO.PostDetailDTO postDetailDTO = PostConverter.toPostDetailDTO(PostCommentsDTO, post, postLikes, postImgUrl);
 
-        return ApiResponse.onSuccess(postDetailDTO);
+        try {
+            List<Comment> PostComments = commentService.getComments(postId);
+            //코멘트 받아서  PostCommentDTO 리스트로 바꿔줌
+            List<CommentResponseDTO.PostCommentDTO> PostCommentsDTO = CommnetConverter.toPostCommentDTO(PostComments);
+            //코멘트 리스트랑 Post 받아서 DTO로 변환해줌
+            Post post = postService.getPost(postId);
+            //포스트에 좋아요한 숫자
+            int postLikes = postLikeService.getMembesrByPostId(postId).size();
+            // 포스트 이미지
+            String postImgUrl = postImageService.getUrlImg(postId);
+            PostResponseDTO.PostDetailDTO postDetailDTO = PostConverter.toPostDetailDTO(PostCommentsDTO, post, postLikes, postImgUrl);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.onSuccess(postDetailDTO));
+
+        } catch (Exception e){
+            ApiResponse<PostResponseDTO.PostDetailDTO> apiResponse = ApiResponse.onFailure(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
+        }
+
 
     }
     @GetMapping("/{postId}/likes")
-    public ApiResponse<List<PostResponseDTO.PostLikeDTO>> getLikes(@PathVariable(value = "postId") Long postId){
+    public ResponseEntity<ApiResponse<List<PostResponseDTO.PostLikeDTO>>> getLikes(@PathVariable(value = "postId") Long postId){
 
-        List<Member> likeMembers = postLikeService.getMembesrByPostId(postId);
-        List<PostResponseDTO.PostLikeDTO> postLikeDTOS = PostConverter.toLikeMembersByMembers(likeMembers);
+        try {
 
-        return ApiResponse.onSuccess(postLikeDTOS);
+            List<Member> likeMembers = postLikeService.getMembesrByPostId(postId);
+            List<PostResponseDTO.PostLikeDTO> postLikeDTOS = PostConverter.toLikeMembersByMembers(likeMembers);
+
+            return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.onSuccess(postLikeDTOS));
+
+        }catch (Exception e){
+            ApiResponse<List<PostResponseDTO.PostLikeDTO>> apiResponse = ApiResponse.onFailure(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
+        }
 
     }
 
     @PostMapping("/{memberId}")
-    public void postFeed(@RequestPart(value = "request") PostRequestDTO.PostFeedDTO postFeedDTO,
-                                     @PathVariable(value = "memberId") String memberId){
+    public ResponseEntity<ApiResponse<String>> postFeed(@RequestPart(value = "request") PostRequestDTO.PostFeedDTO postFeedDTO,
+                                   @PathVariable(value = "memberId") String memberId){
+            try{
 
-            Member member = memberService.getMemberByNickname(memberId);
-            postService.CreateFeed(member, postFeedDTO);
+                Member member = memberService.getMemberByNickname(memberId);
+                postService.CreateFeed(member, postFeedDTO);
+                return ResponseEntity.ok().body(ApiResponse.onSuccess("성공적으로 피드를 작성했습니다."));
+            }catch(Exception e){
 
+                ApiResponse<String> apiResponse = ApiResponse.onFailure(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getMessage(), null);
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
+            }
 
 
     }
 
     @GetMapping("/{memberNickname}")
-    public ApiResponse<Page<PostResponseDTO.PostDTO>> getMemberPost(@PageableDefault(page = 1) Pageable pageable, @PathVariable(value = "memberNickname") String memberNickname){
+    public ResponseEntity<ApiResponse<Page<PostResponseDTO.PostDTO>>> getMemberPost(@PageableDefault(page = 1) Pageable pageable, @PathVariable(value = "memberNickname") String memberNickname){
 
-        //닉네임으로 멤버 추출 및 멤버아이디 가져옴
-        Member member = memberService.getMemberByNickname(memberNickname);
-        Long memberId = member.getId(); // 나중에 걍 서비스에서 닉네임으로 아이디 만들기
+        try {
+            //닉네임으로 멤버 추출 및 멤버아이디 가져옴
+            Member member = memberService.getMemberByNickname(memberNickname);
+            Long memberId = member.getId(); // 나중에 걍 서비스에서 닉네임으로 아이디 만들기
+            Page<PostResponseDTO.PostDTO> feedListDTO = feedQueryService.paging(memberId,pageable);
+            return  ResponseEntity.status(HttpStatus.OK).body(ApiResponse.onSuccess(feedListDTO));
 
-        Page<PostResponseDTO.PostDTO> feedListDTO = feedQueryService.paging(memberId,pageable);
-        return ApiResponse.onSuccess(feedListDTO);
+        }catch (Exception e){
+            ApiResponse<Page<PostResponseDTO.PostDTO>> apiResponse = ApiResponse.onFailure(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
+        }
+
+
     }
 
     @GetMapping("/members/{memberId}/posts")
