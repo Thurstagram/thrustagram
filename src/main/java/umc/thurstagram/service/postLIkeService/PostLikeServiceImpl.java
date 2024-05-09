@@ -18,6 +18,7 @@ public class PostLikeServiceImpl implements PostLikeService {
     @Override
     @Transactional
     public List<Member> getMembesrByPostId(Long postId){
+
         return postLikeRepository.findMembersByPostId(postId);
     }
 }
