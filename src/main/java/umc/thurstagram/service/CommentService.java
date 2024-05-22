@@ -4,11 +4,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.thurstagram.apipayload.Handler.CommentHandler;
+import umc.thurstagram.apipayload.Handler.PostHandler;
+import umc.thurstagram.apipayload.code.status.ErrorStatus;
 import umc.thurstagram.converter.CommentConverter;
 import umc.thurstagram.domain.Comment;
 import umc.thurstagram.domain.Member;
 import umc.thurstagram.domain.Post;
 import umc.thurstagram.domain.Recomment;
+import umc.thurstagram.exception.GeneralException;
 import umc.thurstagram.web.dto.request.CommentCreateRequest;
 import umc.thurstagram.web.dto.response.CommentCreateResponse;
 import umc.thurstagram.repository.CommentRepository;
@@ -30,12 +34,12 @@ public class CommentService {
     public CommentCreateResponse writeComment(Long postId, CommentCreateRequest commentCreateRequest){
 
         Member member = memberRepository.findById(commentCreateRequest.getMemberId())
-                .orElseThrow();
+                .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Post post = postRepository.findById(postId)
-                .orElseThrow();
+                .orElseThrow(() -> new PostHandler(ErrorStatus.POST_NOT_FOUND));
 
         Comment comment = commentRepository.save(CommentConverter.toComment(member, post, commentCreateRequest));
-        return new CommentCreateResponse(comment.getId());
+        return new CommentCreateResponse(comment.getPost().getUpdated_at());
     }
 
     @Transactional
@@ -48,12 +52,12 @@ public class CommentService {
     public CommentCreateResponse writeRecomment(Long commentId, CommentCreateRequest commentCreateRequest){
 
         Member member = memberRepository.findById(commentCreateRequest.getMemberId())
-                .orElseThrow();
+                .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Comment comment = commentRepository.findById(commentId)
-                .orElseThrow();
+                .orElseThrow(() -> new CommentHandler(ErrorStatus.COMMENT_NOT_FOUND));
 
         Recomment recomment = recommentRepository.save(CommentConverter.toRecomment(member, comment, commentCreateRequest));
-        return new CommentCreateResponse(recomment.getId());
+        return new CommentCreateResponse(recomment.getComment().getUpdated_at());
     }
 
     @Transactional
