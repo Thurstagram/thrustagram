@@ -1,7 +1,6 @@
 package umc.thurstagram.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.thurstagram.apipayload.Handler.PostHandler;
@@ -24,7 +23,6 @@ import umc.thurstagram.repository.SaveRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class SaveService {

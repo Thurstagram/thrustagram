@@ -1,7 +1,6 @@
 package umc.thurstagram.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.thurstagram.apipayload.Handler.CommentHandler;
@@ -14,7 +13,6 @@ import umc.thurstagram.web.dto.request.LikeCreateRequest;
 import umc.thurstagram.web.dto.response.LikeCreateResponse;
 import umc.thurstagram.repository.*;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LikeService {

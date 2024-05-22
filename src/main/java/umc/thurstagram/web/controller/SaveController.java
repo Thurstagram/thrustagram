@@ -1,9 +1,6 @@
 package umc.thurstagram.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.web.dto.request.SaveCreateRequest;
@@ -11,7 +8,6 @@ import umc.thurstagram.web.dto.response.SaveCreateResponse;
 import umc.thurstagram.web.dto.response.SaveListResponse;
 import umc.thurstagram.service.SaveService;
 
-@Slf4j
 @RestController
 @RequestMapping("/save")
 @RequiredArgsConstructor
