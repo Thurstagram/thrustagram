@@ -20,7 +20,7 @@ public enum ErrorStatus implements BaseCode {
     SESSION_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "UNAUTHORIZED", "유효하지 않은 세션입니다."),
 
     // 피드 생성 에러
-    IMG_NOT_FOUND(HttpStatus.NOT_FOUND, "POST FAIL", "선택된 이미지가 없습니다"),
+    IMG_NOT_FOUND(HttpStatus.NOT_FOUND, "POST FAIL", "선택된 이미지가 없습니다");
 
 
 

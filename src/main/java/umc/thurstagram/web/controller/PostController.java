@@ -7,10 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import umc.thurstagram.apipayload.ApiResponse;
-import umc.thurstagram.converter.CommnetConverter;
+import umc.thurstagram.converter.CommentConverter;
 import umc.thurstagram.converter.PostConverter;
 import umc.thurstagram.domain.*;
 import umc.thurstagram.web.dto.ViewPostsInlineResponseDto;
@@ -48,7 +47,7 @@ public class PostController {
         try {
             List<Comment> PostComments = commentService.getComments(postId);
             //코멘트 받아서  PostCommentDTO 리스트로 바꿔줌
-            List<CommentResponseDTO.PostCommentDTO> PostCommentsDTO = CommnetConverter.toPostCommentDTO(PostComments);
+            List<CommentResponseDTO.PostCommentDTO> PostCommentsDTO = CommentConverter.toPostCommentDTO(PostComments);
             //코멘트 리스트랑 Post 받아서 DTO로 변환해줌
             Post post = postService.getPost(postId);
             //포스트에 좋아요한 숫자

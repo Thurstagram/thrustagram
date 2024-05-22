@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.thurstagram.converter.CommentConverter;
 import umc.thurstagram.domain.Comment;
 import umc.thurstagram.domain.Member;
 import umc.thurstagram.domain.Post;
@@ -33,7 +34,7 @@ public class CommentService {
         Post post = postRepository.findById(postId)
                 .orElseThrow();
 
-        Comment comment = commentRepository.save(Comment.of(member, post, commentCreateRequest));
+        Comment comment = commentRepository.save(CommentConverter.toComment(member, post, commentCreateRequest));
         return new CommentCreateResponse(comment.getId());
     }
 
@@ -51,7 +52,7 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow();
 
-        Recomment recomment = recommentRepository.save(Recomment.of(member, comment, commentCreateRequest));
+        Recomment recomment = recommentRepository.save(CommentConverter.toRecomment(member, comment, commentCreateRequest));
         return new CommentCreateResponse(recomment.getId());
     }
 

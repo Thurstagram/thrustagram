@@ -29,12 +29,4 @@ public class Recomment {
     private Member member;
 
     private String content;
-
-    public static Recomment of(Member member, Comment comment, CommentCreateRequest commentCreateRequest){
-        return Recomment.builder()
-                .member(member)
-                .comment(comment)
-                .content(commentCreateRequest.getContent())
-                .build();
-    }
 }

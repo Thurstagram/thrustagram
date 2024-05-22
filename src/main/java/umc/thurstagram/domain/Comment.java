@@ -29,12 +29,4 @@ public class Comment {
     private Post post;
 
     private String content;
-
-    public static Comment of(Member member, Post post, CommentCreateRequest commentCreateRequest){
-        return Comment.builder()
-                .member(member)
-                .post(post)
-                .content(commentCreateRequest.getContent())
-                .build();
-    }
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.thurstagram.converter.LikeConverter;
 import umc.thurstagram.domain.*;
 import umc.thurstagram.web.dto.request.LikeCreateRequest;
 import umc.thurstagram.web.dto.response.LikeCreateResponse;
@@ -30,7 +31,7 @@ public class LikeService {
         Post post = postRepository.findById(postId)
                 .orElseThrow();
 
-        PostLike postLike = postLikeRepository.save(PostLike.of(member, post));
+        PostLike postLike = postLikeRepository.save(LikeConverter.toPostLike(member, post));
         return new LikeCreateResponse(postLike.getId());
     }
 
@@ -48,7 +49,7 @@ public class LikeService {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow();
 
-        CommentLike commentLike = commentLikeRepository.save(CommentLike.of(member, comment));
+        CommentLike commentLike = commentLikeRepository.save(LikeConverter.toCommentLike(member, comment));
         return new LikeCreateResponse(commentLike.getId());
     }
 
@@ -66,7 +67,7 @@ public class LikeService {
         Recomment recomment = recommentRepository.findById(recommentId)
                 .orElseThrow();
 
-        RecommentLike recommentLike = recommentLikeRepository.save(RecommentLike.of(member, recomment));
+        RecommentLike recommentLike = recommentLikeRepository.save(LikeConverter.toRecommentLike(member, recomment));
         return new LikeCreateResponse(recommentLike.getId());
     }
 

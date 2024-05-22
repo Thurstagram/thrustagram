@@ -27,11 +27,4 @@ public class CommentLike {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "comment_id")
     private Comment comment;
-
-    public static CommentLike of(Member member, Comment comment){
-        return CommentLike.builder()
-                .member(member)
-                .comment(comment)
-                .build();
-    }
 }
