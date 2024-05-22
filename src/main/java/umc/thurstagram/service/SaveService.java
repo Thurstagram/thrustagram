@@ -4,10 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.thurstagram.apipayload.Handler.PostHandler;
+import umc.thurstagram.apipayload.code.status.ErrorStatus;
+import umc.thurstagram.converter.SaveConverter;
 import umc.thurstagram.domain.Member;
 import umc.thurstagram.domain.Post;
 import umc.thurstagram.domain.PostImage;
 import umc.thurstagram.domain.Save;
+import umc.thurstagram.exception.GeneralException;
 import umc.thurstagram.web.dto.request.SaveCreateRequest;
 import umc.thurstagram.web.dto.response.SaveCreateResponse;
 import umc.thurstagram.web.dto.response.SaveListResponse;
@@ -34,9 +38,9 @@ public class SaveService {
     public SaveCreateResponse savePost(SaveCreateRequest saveCreateRequest){
 
         Member member = memberRepository.findById(saveCreateRequest.getMemberId())
-                .orElseThrow(); // 에러처리 만들어야함!
+                .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Post post = postRepository.findById(saveCreateRequest.getPostId())
-                .orElseThrow(); // 에러처리 만들어야함!
+                .orElseThrow(() -> new PostHandler(ErrorStatus.POST_NOT_FOUND));
 
         Save save = Save.builder()
                 .member(member)
@@ -44,7 +48,8 @@ public class SaveService {
                 .build();
 
         saveRepository.save(save);
-        return new SaveCreateResponse(save.getId());
+        SaveCreateResponse saveCreateResponse = SaveConverter.toSaveCreateResponse(save);
+        return saveCreateResponse;
     }
 
     public SaveListResponse getAllByMemberId(Long memberId){
