@@ -4,8 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.thurstagram.apipayload.Handler.CommentHandler;
+import umc.thurstagram.apipayload.Handler.PostHandler;
+import umc.thurstagram.apipayload.code.status.ErrorStatus;
 import umc.thurstagram.converter.LikeConverter;
 import umc.thurstagram.domain.*;
+import umc.thurstagram.exception.GeneralException;
 import umc.thurstagram.web.dto.request.LikeCreateRequest;
 import umc.thurstagram.web.dto.response.LikeCreateResponse;
 import umc.thurstagram.repository.*;
@@ -27,9 +31,9 @@ public class LikeService {
     public LikeCreateResponse likePost(Long postId, LikeCreateRequest likeCreateRequest){
 
         Member member = memberRepository.findById(likeCreateRequest.getMemberId())
-                .orElseThrow();
+                .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Post post = postRepository.findById(postId)
-                .orElseThrow();
+                .orElseThrow(() -> new PostHandler(ErrorStatus.POST_NOT_FOUND));
 
         PostLike postLike = postLikeRepository.save(LikeConverter.toPostLike(member, post));
         return new LikeCreateResponse(postLike.getId());
@@ -45,9 +49,9 @@ public class LikeService {
     public LikeCreateResponse likeComment(Long commentId, LikeCreateRequest likeCreateRequest){
 
         Member member = memberRepository.findById(likeCreateRequest.getMemberId())
-                .orElseThrow();
+                .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Comment comment = commentRepository.findById(commentId)
-                .orElseThrow();
+                .orElseThrow(() -> new CommentHandler(ErrorStatus.COMMENT_NOT_FOUND));
 
         CommentLike commentLike = commentLikeRepository.save(LikeConverter.toCommentLike(member, comment));
         return new LikeCreateResponse(commentLike.getId());
@@ -63,9 +67,9 @@ public class LikeService {
     public LikeCreateResponse likeRecomment(Long recommentId, LikeCreateRequest likeCreateRequest){
 
         Member member = memberRepository.findById(likeCreateRequest.getMemberId())
-                .orElseThrow();
+                .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Recomment recomment = recommentRepository.findById(recommentId)
-                .orElseThrow();
+                .orElseThrow(() -> new CommentHandler(ErrorStatus.COMMENT_NOT_FOUND));
 
         RecommentLike recommentLike = recommentLikeRepository.save(LikeConverter.toRecommentLike(member, recomment));
         return new LikeCreateResponse(recommentLike.getId());

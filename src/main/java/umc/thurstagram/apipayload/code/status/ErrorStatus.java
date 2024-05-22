@@ -23,7 +23,10 @@ public enum ErrorStatus implements BaseCode {
     IMG_NOT_FOUND(HttpStatus.NOT_FOUND, "POST FAIL", "선택된 이미지가 없습니다"),
 
     // 피드 조회 실패
-    POST_NOT_FOUND(HttpStatus.NOT_FOUND, "POST FAIL", "존재하지 않는 게시글입니다");
+    POST_NOT_FOUND(HttpStatus.NOT_FOUND, "POST FAIL", "존재하지 않는 게시글입니다"),
+
+    // 댓글 조회 실패
+    COMMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "COMMENT FAIL", "존재하지 않는 댓글입니다");
 
 
 

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.web.dto.request.LikeCreateRequest;
 import umc.thurstagram.web.dto.response.LikeCreateResponse;
 import umc.thurstagram.service.LikeService;
@@ -24,9 +25,9 @@ public class LikeController {
     }
 
     @DeleteMapping("/{postLikeId}")
-    public ResponseEntity<?> unlikePost(@PathVariable Long postLikeId){
+    public ApiResponse<?> unlikePost(@PathVariable Long postLikeId){
         likeService.unlikePost(postLikeId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ApiResponse.onSuccess("좋아요 취소됨");
     }
 
     @PostMapping("/{commentId}/like")
@@ -37,9 +38,9 @@ public class LikeController {
     }
 
     @DeleteMapping("/{commentLikeId}")
-    public ResponseEntity<?> unlikeComment(@PathVariable Long commentLikeId){
+    public ApiResponse<?> unlikeComment(@PathVariable Long commentLikeId){
         likeService.unlikeComment(commentLikeId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ApiResponse.onSuccess("좋아요 취소됨");
     }
 
     @PostMapping("/{recommentId}/like")
@@ -50,8 +51,8 @@ public class LikeController {
     }
 
     @DeleteMapping("/{recommentLikeId}")
-    public ResponseEntity<?> unlikeRecomment(@PathVariable Long recommentLikeId){
+    public ApiResponse<?> unlikeRecomment(@PathVariable Long recommentLikeId){
         likeService.unlikeRecomment(recommentLikeId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ApiResponse.onSuccess("좋아요 취소됨");
     }
 }
