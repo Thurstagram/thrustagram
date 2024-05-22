@@ -13,7 +13,7 @@ import static jakarta.persistence.FetchType.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Save {
+public class Save extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

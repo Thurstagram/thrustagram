@@ -36,7 +36,7 @@ public class LikeService {
                 .orElseThrow(() -> new PostHandler(ErrorStatus.POST_NOT_FOUND));
 
         PostLike postLike = postLikeRepository.save(LikeConverter.toPostLike(member, post));
-        return new LikeCreateResponse(postLike.getId());
+        return new LikeCreateResponse(postLike.getPost().getUpdated_at());
     }
 
     @Transactional
@@ -54,7 +54,7 @@ public class LikeService {
                 .orElseThrow(() -> new CommentHandler(ErrorStatus.COMMENT_NOT_FOUND));
 
         CommentLike commentLike = commentLikeRepository.save(LikeConverter.toCommentLike(member, comment));
-        return new LikeCreateResponse(commentLike.getId());
+        return new LikeCreateResponse(commentLike.getComment().getUpdated_at());
     }
 
     @Transactional
@@ -72,7 +72,7 @@ public class LikeService {
                 .orElseThrow(() -> new CommentHandler(ErrorStatus.COMMENT_NOT_FOUND));
 
         RecommentLike recommentLike = recommentLikeRepository.save(LikeConverter.toRecommentLike(member, recomment));
-        return new LikeCreateResponse(recommentLike.getId());
+        return new LikeCreateResponse(recommentLike.getRecomment().getUpdated_at());
     }
 
     @Transactional

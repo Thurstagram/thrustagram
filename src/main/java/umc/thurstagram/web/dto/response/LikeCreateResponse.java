@@ -1,13 +1,17 @@
 package umc.thurstagram.web.dto.response;
 
+import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
+@Builder
 public class LikeCreateResponse {
 
-    private Long id;
+    private LocalDateTime updatedAt;
 
-    public LikeCreateResponse(Long id) {
-        this.id = id;
+    public LikeCreateResponse(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

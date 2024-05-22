@@ -15,7 +15,7 @@ import static jakarta.persistence.FetchType.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentLike {
+public class CommentLike extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

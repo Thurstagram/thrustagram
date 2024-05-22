@@ -18,10 +18,10 @@ public class LikeController {
     private final LikeService likeService;
 
     @PostMapping("/{postId}/like")
-    public ResponseEntity<LikeCreateResponse> likePost(
+    public ApiResponse<LikeCreateResponse> likePost(
             @PathVariable Long postId,
             @RequestBody LikeCreateRequest likeCreateRequest){
-        return ResponseEntity.status(HttpStatus.CREATED).body(likeService.likePost(postId, likeCreateRequest));
+        return ApiResponse.onSuccess(likeService.likePost(postId, likeCreateRequest));
     }
 
     @DeleteMapping("/{postLikeId}")
@@ -31,10 +31,10 @@ public class LikeController {
     }
 
     @PostMapping("/{commentId}/like")
-    public ResponseEntity<LikeCreateResponse> likeComment(
+    public ApiResponse<LikeCreateResponse> likeComment(
             @PathVariable Long commentId,
             @RequestBody LikeCreateRequest likeCreateRequest){
-        return ResponseEntity.status(HttpStatus.CREATED).body(likeService.likeComment(commentId, likeCreateRequest));
+        return ApiResponse.onSuccess(likeService.likeComment(commentId, likeCreateRequest));
     }
 
     @DeleteMapping("/{commentLikeId}")
@@ -44,10 +44,10 @@ public class LikeController {
     }
 
     @PostMapping("/{recommentId}/like")
-    public ResponseEntity<LikeCreateResponse> likeRecomment(
+    public ApiResponse<LikeCreateResponse> likeRecomment(
             @PathVariable Long recommentId,
             @RequestBody LikeCreateRequest likeCreateRequest){
-        return ResponseEntity.status(HttpStatus.CREATED).body(likeService.likeRecomment(recommentId, likeCreateRequest));
+        return ApiResponse.onSuccess(likeService.likeRecomment(recommentId, likeCreateRequest));
     }
 
     @DeleteMapping("/{recommentLikeId}")

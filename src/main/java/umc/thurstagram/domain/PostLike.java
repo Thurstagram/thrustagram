@@ -13,7 +13,7 @@ import static jakarta.persistence.FetchType.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostLike {
+public class PostLike extends BaseEntity {
 
     @Id
     @GeneratedValue

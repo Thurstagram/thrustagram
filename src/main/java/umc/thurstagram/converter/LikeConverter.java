@@ -1,6 +1,7 @@
 package umc.thurstagram.converter;
 
 import umc.thurstagram.domain.*;
+import umc.thurstagram.web.dto.response.LikeCreateResponse;
 
 public class LikeConverter {
 
