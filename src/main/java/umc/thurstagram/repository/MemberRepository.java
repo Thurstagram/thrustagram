@@ -6,4 +6,5 @@ import umc.thurstagram.domain.Member;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Member getMemberByNickname(String nickName);
+    boolean existsMemberByNickname(String nickname);
 }

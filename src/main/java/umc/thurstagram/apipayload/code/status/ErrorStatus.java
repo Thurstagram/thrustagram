@@ -13,14 +13,16 @@ public enum ErrorStatus implements BaseCode {
     // 에러 응답
     INTERNER_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error", "서버 에러"),
 
-    // 로그인 실패
+    // 로그인 관련
+    JOIN_ALREADY_EXISTS(HttpStatus.CONFLICT, "user already exists", "이미 존재하는 아이디입니다."),
+
     LOGIN_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "LOGIN FAIL", "아이디 또는 비밀번호를 확인하세요"),
 
     // 세션 에러
     SESSION_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "UNAUTHORIZED", "유효하지 않은 세션입니다."),
 
     // 피드 생성 에러
-    IMG_NOT_FOUND(HttpStatus.NOT_FOUND, "POST FAIL", "선택된 이미지가 없습니다"),
+    IMG_NOT_FOUND(HttpStatus.NOT_FOUND, "POST FAIL", "선택된 이미지가 없습니다");
 
 
 
