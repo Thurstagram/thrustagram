@@ -1,7 +1,7 @@
 package umc.thurstagram.converter;
 
 import umc.thurstagram.domain.Hashtag;
-import umc.thurstagram.web.dto.PostRequestDTO;
+import umc.thurstagram.web.dto.postDTO.PostRequestDTO;
 
 public class HashtagConverter {
 

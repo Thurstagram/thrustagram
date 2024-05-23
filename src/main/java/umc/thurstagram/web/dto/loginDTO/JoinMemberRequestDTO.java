@@ -1,4 +1,4 @@
-package umc.thurstagram.web.dto;
+package umc.thurstagram.web.dto.loginDTO;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

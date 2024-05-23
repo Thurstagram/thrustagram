@@ -1,4 +1,4 @@
-package umc.thurstagram.web.dto.response;
+package umc.thurstagram.web.dto.commentDTO;
 
 import lombok.Getter;
 

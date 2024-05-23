@@ -1,7 +1,7 @@
 package umc.thurstagram.converter;
 
 import umc.thurstagram.domain.Comment;
-import umc.thurstagram.web.dto.CommentResponseDTO;
+import umc.thurstagram.web.dto.commentDTO.CommentResponseDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

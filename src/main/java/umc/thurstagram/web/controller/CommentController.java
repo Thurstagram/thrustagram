@@ -5,8 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import umc.thurstagram.web.dto.request.CommentCreateRequest;
-import umc.thurstagram.web.dto.response.CommentCreateResponse;
+import umc.thurstagram.web.dto.commentDTO.CommentCreateRequest;
+import umc.thurstagram.web.dto.commentDTO.CommentCreateResponse;
 import umc.thurstagram.service.CommentService;
 
 @Slf4j

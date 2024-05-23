@@ -1,9 +1,10 @@
-package umc.thurstagram.web.dto;
+package umc.thurstagram.web.dto.postDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import umc.thurstagram.web.dto.commentDTO.CommentResponseDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -47,6 +48,19 @@ public class PostResponseDTO {
         LocalDateTime created_at;
         String hashTag; //일단 포스트 한개당 해시태그가 하나라고 가정
 
+
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class PostFeedDTO{
+
+        String contents;
+        String post_img_url;
+        String postHashTag;
+        LocalDateTime created_at;
 
     }
 

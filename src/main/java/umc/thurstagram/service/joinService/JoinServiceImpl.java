@@ -1,16 +1,14 @@
 package umc.thurstagram.service.joinService;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 import umc.thurstagram.apipayload.Handler.TempHandler;
 import umc.thurstagram.apipayload.code.status.ErrorStatus;
 import umc.thurstagram.domain.Member;
 import umc.thurstagram.repository.MemberRepository;
-import umc.thurstagram.web.dto.JoinMemberRequestDTO;
+import umc.thurstagram.web.dto.loginDTO.JoinMemberRequestDTO;
 
 @Service
 @RequiredArgsConstructor

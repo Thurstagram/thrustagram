@@ -7,13 +7,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.converter.CommnetConverter;
 import umc.thurstagram.converter.PostConverter;
 import umc.thurstagram.domain.*;
-import umc.thurstagram.web.dto.ViewPostsInlineResponseDto;
+import umc.thurstagram.web.dto.postDTO.ViewPostsInlineResponseDto;
 import umc.thurstagram.service.commentService.CommentService;
 import umc.thurstagram.service.memberService.MemberService;
 import umc.thurstagram.service.pagingService.FeedQueryService;
@@ -21,9 +20,9 @@ import umc.thurstagram.service.postHashtagService.PostHashtagService;
 import umc.thurstagram.service.postImageService.PostImageService;
 import umc.thurstagram.service.postLIkeService.PostLikeService;
 import umc.thurstagram.service.postService.PostService;
-import umc.thurstagram.web.dto.CommentResponseDTO;
-import umc.thurstagram.web.dto.PostRequestDTO;
-import umc.thurstagram.web.dto.PostResponseDTO;
+import umc.thurstagram.web.dto.commentDTO.CommentResponseDTO;
+import umc.thurstagram.web.dto.postDTO.PostRequestDTO;
+import umc.thurstagram.web.dto.postDTO.PostResponseDTO;
 
 import java.util.List;
 

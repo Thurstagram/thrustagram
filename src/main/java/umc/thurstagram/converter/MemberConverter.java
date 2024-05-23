@@ -1,9 +1,9 @@
 package umc.thurstagram.converter;
 
 import umc.thurstagram.domain.Member;
-import umc.thurstagram.web.dto.UpdateProfileRequestDto;
-import umc.thurstagram.web.dto.UpdateProfileResponseDto;
-import umc.thurstagram.web.dto.ViewUserInfoResponseDto;
+import umc.thurstagram.web.dto.profileDTO.UpdateProfileRequestDto;
+import umc.thurstagram.web.dto.profileDTO.UpdateProfileResponseDto;
+import umc.thurstagram.web.dto.profileDTO.ViewUserInfoResponseDto;
 
 public class MemberConverter {
     public static Member toMember(UpdateProfileRequestDto updateProfileRequestDto) {

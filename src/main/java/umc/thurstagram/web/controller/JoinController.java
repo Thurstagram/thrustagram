@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.service.joinService.JoinService;
-import umc.thurstagram.web.dto.JoinMemberRequestDTO;
+import umc.thurstagram.web.dto.loginDTO.JoinMemberRequestDTO;
 
 
 @RestController

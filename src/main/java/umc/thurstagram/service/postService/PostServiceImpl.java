@@ -10,9 +10,9 @@ import umc.thurstagram.converter.HashtagConverter;
 import umc.thurstagram.converter.PostConverter;
 import umc.thurstagram.converter.PostHashtagConverter;
 import umc.thurstagram.domain.*;
-import umc.thurstagram.web.dto.ViewPostsInlineResponseDto;
+import umc.thurstagram.web.dto.postDTO.ViewPostsInlineResponseDto;
 import umc.thurstagram.repository.*;
-import umc.thurstagram.web.dto.PostRequestDTO;
+import umc.thurstagram.web.dto.postDTO.PostRequestDTO;
 
 import java.util.ArrayList;
 import java.util.List;

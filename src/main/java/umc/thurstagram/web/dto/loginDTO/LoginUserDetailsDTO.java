@@ -1,4 +1,4 @@
-package umc.thurstagram.web.dto;
+package umc.thurstagram.web.dto.loginDTO;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

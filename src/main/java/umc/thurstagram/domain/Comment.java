@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import umc.thurstagram.web.dto.request.CommentCreateRequest;
+import umc.thurstagram.web.dto.commentDTO.CommentCreateRequest;
 
 import static jakarta.persistence.FetchType.*;
 

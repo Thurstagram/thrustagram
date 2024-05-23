@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import umc.thurstagram.repository.MemberRepository;
-import umc.thurstagram.web.dto.LoginUserDetailsDTO;
+import umc.thurstagram.web.dto.loginDTO.LoginUserDetailsDTO;
 
 @Service
 @RequiredArgsConstructor

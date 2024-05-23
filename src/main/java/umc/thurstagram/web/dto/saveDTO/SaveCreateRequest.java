@@ -1,4 +1,4 @@
-package umc.thurstagram.web.dto.request;
+package umc.thurstagram.web.dto.saveDTO;
 
 import lombok.Builder;
 import lombok.Getter;

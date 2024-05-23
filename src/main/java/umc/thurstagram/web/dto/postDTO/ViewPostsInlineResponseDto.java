@@ -1,4 +1,4 @@
-package umc.thurstagram.web.dto;
+package umc.thurstagram.web.dto.postDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ViewUserInfoResponseDto {
-    private String profileImg;
-    private String name;
-    private String nickname;
+public class ViewPostsInlineResponseDto {
+    private Long postId;
+    private String firstPic;
 }

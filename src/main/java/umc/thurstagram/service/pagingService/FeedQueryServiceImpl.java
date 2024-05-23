@@ -11,7 +11,7 @@ import umc.thurstagram.repository.MemberRepository;
 import umc.thurstagram.repository.PostHashtagRepository;
 import umc.thurstagram.repository.PostImageRepository;
 import umc.thurstagram.repository.PostRepository;
-import umc.thurstagram.web.dto.PostResponseDTO;
+import umc.thurstagram.web.dto.postDTO.PostResponseDTO;
 
 
 @Service

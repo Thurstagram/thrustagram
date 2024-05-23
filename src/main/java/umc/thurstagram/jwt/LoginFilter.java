@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import umc.thurstagram.apipayload.ApiResponse;
 import umc.thurstagram.apipayload.Handler.TempHandler;
 import umc.thurstagram.apipayload.code.status.ErrorStatus;
-import umc.thurstagram.web.dto.LoginUserDetailsDTO;
+import umc.thurstagram.web.dto.loginDTO.LoginUserDetailsDTO;
 
 import java.io.IOException;
 import java.util.Collection;
