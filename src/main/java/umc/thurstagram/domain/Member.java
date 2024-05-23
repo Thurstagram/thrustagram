@@ -27,6 +27,7 @@ public class Member extends BaseEntity{
     private String name;
     private String password;
     private String profile_img;
+    private String role;
 
     public void update(String profileImg, String name, String nickname) {
         this.profile_img = profileImg;
