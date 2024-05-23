@@ -32,8 +32,11 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     }
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        // 폼 로그인 방식에서 사용가능.
         String username = obtainUsername(request);
         String password = obtainPassword(request);
+        // json 방식의 request도 받으려면 objectMapper로 처리해주는거 구현해줘야한다.
+
         // 로그인 정보를 token으로 변환
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password, null);
         // AuthenticationManger에게 로그인 정보를 전달한다.
@@ -67,7 +70,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         // 응답을 클라이언트에게 보냅니다.
         response.getWriter().write(jsonResponse);
-
 
     }
 

@@ -17,6 +17,6 @@ public class LoginUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return memberRepository.findMemberByNickname(username)
                 .map(LoginUserDetailsDTO::new)
-                .orElse(null);
+                .orElse(null); // 나중에 에러 처리 해주는게 좋을듯.
     }
 }
