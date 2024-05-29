@@ -15,7 +15,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Recomment {
+public class Recomment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,12 +29,4 @@ public class Recomment {
     private Member member;
 
     private String content;
-
-    public static Recomment of(Member member, Comment comment, CommentCreateRequest commentCreateRequest){
-        return Recomment.builder()
-                .member(member)
-                .comment(comment)
-                .content(commentCreateRequest.getContent())
-                .build();
-    }
 }

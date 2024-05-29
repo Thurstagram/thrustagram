@@ -1,13 +1,17 @@
 package umc.thurstagram.web.dto.commentDTO;
 
+import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
+@Builder
 public class CommentCreateResponse {
 
-    private final Long id;
+    private final LocalDateTime updatedAt;
 
-    public CommentCreateResponse(Long id) {
-        this.id = id;
+    public CommentCreateResponse(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

@@ -1,9 +1,11 @@
 package umc.thurstagram.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.thurstagram.apipayload.Handler.TempHandler;
+import umc.thurstagram.apipayload.code.status.ErrorStatus;
+import umc.thurstagram.converter.SaveConverter;
 import umc.thurstagram.domain.Member;
 import umc.thurstagram.domain.Post;
 import umc.thurstagram.domain.PostImage;
@@ -12,6 +14,7 @@ import umc.thurstagram.web.dto.saveDTO.SaveCreateRequest;
 import umc.thurstagram.web.dto.saveDTO.SaveCreateResponse;
 import umc.thurstagram.web.dto.saveDTO.SaveListResponse;
 import umc.thurstagram.web.dto.saveDTO.SaveResponse;
+import umc.thurstagram.exception.GeneralException;
 import umc.thurstagram.repository.MemberRepository;
 import umc.thurstagram.repository.PostImageRepository;
 import umc.thurstagram.repository.PostRepository;
@@ -20,7 +23,6 @@ import umc.thurstagram.repository.SaveRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class SaveService {
@@ -34,9 +36,9 @@ public class SaveService {
     public SaveCreateResponse savePost(SaveCreateRequest saveCreateRequest){
 
         Member member = memberRepository.findById(saveCreateRequest.getMemberId())
-                .orElseThrow(); // 에러처리 만들어야함!
+                .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Post post = postRepository.findById(saveCreateRequest.getPostId())
-                .orElseThrow(); // 에러처리 만들어야함!
+                .orElseThrow(() -> new TempHandler(ErrorStatus.POST_NOT_FOUND));
 
         Save save = Save.builder()
                 .member(member)
@@ -44,7 +46,8 @@ public class SaveService {
                 .build();
 
         saveRepository.save(save);
-        return new SaveCreateResponse(save.getId());
+        SaveCreateResponse saveCreateResponse = SaveConverter.toSaveCreateResponse(save);
+        return saveCreateResponse;
     }
 
     public SaveListResponse getAllByMemberId(Long memberId){

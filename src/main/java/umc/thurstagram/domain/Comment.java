@@ -15,7 +15,7 @@ import static jakarta.persistence.FetchType.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+public class Comment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,12 +29,4 @@ public class Comment {
     private Post post;
 
     private String content;
-
-    public static Comment of(Member member, Post post, CommentCreateRequest commentCreateRequest){
-        return Comment.builder()
-                .member(member)
-                .post(post)
-                .content(commentCreateRequest.getContent())
-                .build();
-    }
 }

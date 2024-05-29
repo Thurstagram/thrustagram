@@ -14,7 +14,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecommentLike {
+public class RecommentLike extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,11 +27,4 @@ public class RecommentLike {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "recomment_id")
     private Recomment recomment;
-
-    public static RecommentLike of(Member member, Recomment recomment){
-        return RecommentLike.builder()
-                .member(member)
-                .recomment(recomment)
-                .build();
-    }
 }
