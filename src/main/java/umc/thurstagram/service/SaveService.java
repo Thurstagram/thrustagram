@@ -3,7 +3,7 @@ package umc.thurstagram.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.thurstagram.apipayload.Handler.PostHandler;
+import umc.thurstagram.apipayload.Handler.TempHandler;
 import umc.thurstagram.apipayload.code.status.ErrorStatus;
 import umc.thurstagram.converter.SaveConverter;
 import umc.thurstagram.domain.Member;
@@ -38,7 +38,7 @@ public class SaveService {
         Member member = memberRepository.findById(saveCreateRequest.getMemberId())
                 .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Post post = postRepository.findById(saveCreateRequest.getPostId())
-                .orElseThrow(() -> new PostHandler(ErrorStatus.POST_NOT_FOUND));
+                .orElseThrow(() -> new TempHandler(ErrorStatus.POST_NOT_FOUND));
 
         Save save = Save.builder()
                 .member(member)

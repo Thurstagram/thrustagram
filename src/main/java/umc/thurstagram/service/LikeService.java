@@ -3,8 +3,7 @@ package umc.thurstagram.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.thurstagram.apipayload.Handler.CommentHandler;
-import umc.thurstagram.apipayload.Handler.PostHandler;
+import umc.thurstagram.apipayload.Handler.TempHandler;
 import umc.thurstagram.apipayload.code.status.ErrorStatus;
 import umc.thurstagram.converter.LikeConverter;
 import umc.thurstagram.domain.*;
@@ -31,7 +30,7 @@ public class LikeService {
         Member member = memberRepository.findById(likeCreateRequest.getMemberId())
                 .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new PostHandler(ErrorStatus.POST_NOT_FOUND));
+                .orElseThrow(() -> new TempHandler(ErrorStatus.POST_NOT_FOUND));
 
         PostLike postLike = postLikeRepository.save(LikeConverter.toPostLike(member, post));
         return new LikeCreateResponse(postLike.getPost().getUpdated_at());
@@ -49,7 +48,7 @@ public class LikeService {
         Member member = memberRepository.findById(likeCreateRequest.getMemberId())
                 .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new CommentHandler(ErrorStatus.COMMENT_NOT_FOUND));
+                .orElseThrow(() -> new TempHandler(ErrorStatus.COMMENT_NOT_FOUND));
 
         CommentLike commentLike = commentLikeRepository.save(LikeConverter.toCommentLike(member, comment));
         return new LikeCreateResponse(commentLike.getComment().getUpdated_at());
@@ -67,7 +66,7 @@ public class LikeService {
         Member member = memberRepository.findById(likeCreateRequest.getMemberId())
                 .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Recomment recomment = recommentRepository.findById(recommentId)
-                .orElseThrow(() -> new CommentHandler(ErrorStatus.COMMENT_NOT_FOUND));
+                .orElseThrow(() -> new TempHandler(ErrorStatus.COMMENT_NOT_FOUND));
 
         RecommentLike recommentLike = recommentLikeRepository.save(LikeConverter.toRecommentLike(member, recomment));
         return new LikeCreateResponse(recommentLike.getRecomment().getUpdated_at());

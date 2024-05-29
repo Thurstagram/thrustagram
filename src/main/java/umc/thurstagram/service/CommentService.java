@@ -3,8 +3,7 @@ package umc.thurstagram.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.thurstagram.apipayload.Handler.CommentHandler;
-import umc.thurstagram.apipayload.Handler.PostHandler;
+import umc.thurstagram.apipayload.Handler.TempHandler;
 import umc.thurstagram.apipayload.code.status.ErrorStatus;
 import umc.thurstagram.converter.CommentConverter;
 import umc.thurstagram.domain.Comment;
@@ -34,7 +33,7 @@ public class CommentService {
         Member member = memberRepository.findById(commentCreateRequest.getMemberId())
                 .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new PostHandler(ErrorStatus.POST_NOT_FOUND));
+                .orElseThrow(() -> new TempHandler(ErrorStatus.POST_NOT_FOUND));
 
         Comment comment = commentRepository.save(CommentConverter.toComment(member, post, commentCreateRequest));
         return new CommentCreateResponse(comment.getPost().getUpdated_at());
@@ -52,7 +51,7 @@ public class CommentService {
         Member member = memberRepository.findById(commentCreateRequest.getMemberId())
                 .orElseThrow(() -> new GeneralException(ErrorStatus.SESSION_UNAUTHORIZED));
         Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new CommentHandler(ErrorStatus.COMMENT_NOT_FOUND));
+                .orElseThrow(() -> new TempHandler(ErrorStatus.COMMENT_NOT_FOUND));
 
         Recomment recomment = recommentRepository.save(CommentConverter.toRecomment(member, comment, commentCreateRequest));
         return new CommentCreateResponse(recomment.getComment().getUpdated_at());
